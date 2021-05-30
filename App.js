@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import * as Location from 'expo-location'
 import WeatherInfo from './components/WeatherInfo.js'
 import UnitsPicker from './components/UnitsPicker.js'
+import ReloadIcon from './components/ReloadIcon.js'
 import {color, colors} from './utils/index'
+
+
 
 const WEATHER_API_KEY = 'a4e253bdef873d8c7c6eeedd1dd696ea'
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
@@ -58,6 +61,7 @@ export default function App() {
         <StatusBar style="auto" />
         <View style={styles.main}>
             <UnitsPicker unitsSystem={unitsSystem} setUnitsSystem={setUnitsSystem}/>
+            <ReloadIcon load={load}/>
             <WeatherInfo currentWeather={currentWeather} />
         </View>
       </View>
@@ -69,24 +73,25 @@ export default function App() {
           <StatusBar style="auto" />
         </View>
       )
-  } else {
-    return(
+  }
+  else {
+     return(
         <View style={styles.container}>
-          <ActivityIndicator size="large" color={colors.PRIMARY_COLOR}/>
+         <ActivityIndicator size="large" color={colors.PRIMARY_COLOR}/>
           <StatusBar style="auto" />
         </View>
-    )
-  }
+     )
+ }
 }
   
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',    
+    justifyContent: 'center',     
   },
 
   main: {
     justifyContent: 'center',
-    flex: 1,
+    flex: 1,    
   }
 });
